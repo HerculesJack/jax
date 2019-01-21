@@ -182,8 +182,9 @@ def jacrev(fun, argnums=0):
   return jacfun
 jacobian = jacrev
 
-def hessian(fun):
-  return jacfwd(jacrev(fun))
+def hessian(fun, argnums=0):
+  """Creates a function which evaluates the Hessian of `fun`."""
+  return jacfwd(jacrev(fun, argnums), argnums)
 
 def _std_basis(pytree):
   leaves, _ = tree_flatten(pytree)
